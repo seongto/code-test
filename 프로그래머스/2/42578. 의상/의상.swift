@@ -5,12 +5,10 @@ func solution(_ clothes:[[String]]) -> Int {
     var answer: Int = 1
     
     for c in clothes {
-        dict[c[1], default: 0] += 1
+        dict[c[1], default: 1] += 1
     }
     
-    for (key, value) in dict {
-        answer = answer * (value + 1)
-    }
+    answer = dict.values.reduce(answer) { $0 * $1}
     
     return answer - 1
 }

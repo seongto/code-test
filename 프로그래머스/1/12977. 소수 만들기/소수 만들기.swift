@@ -1,15 +1,15 @@
 import Foundation
 
-func makePrimeNumbers(_ num: Int) -> [Int] {
+func makePrimeNumbers(_ num: Int) -> Set<Int> {
     var arr = Array(repeating: true, count: num+1)
-    var primes = [Int]()
+    var primes: Set<Int> = []
     
-    for i in 2...num {
-        if arr[i] == true {
-            for j in stride(from: i, through: num, by: i) {
-                    arr[j] = false
+    for num1 in 2...num {
+        if arr[num1] == true {
+            for num2 in stride(from: num1, through: num, by: num1) {
+                    arr[num2] = false
             }
-            primes.append(i)
+            primes.insert(num1)
         }
     }
     
@@ -20,7 +20,7 @@ func makePrimeNumbers(_ num: Int) -> [Int] {
 func solution(_ nums:[Int]) -> Int {
     var sorted = nums.sorted(by: >)
     var maxSum: Int = sorted[0] + sorted[1] + sorted[2]
-    var primeNumbers: [Int] = makePrimeNumbers(maxSum)
+    var primeNumbers: Set<Int> = makePrimeNumbers(maxSum)
     
     var answer = 0
 

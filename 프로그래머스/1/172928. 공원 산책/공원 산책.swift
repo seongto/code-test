@@ -31,9 +31,6 @@ func solution(_ park:[String], _ routes:[String]) -> [Int] {
         if startFound { break }
     }
     
-    print("\(cx), \(cy)")
-    print(newPark)
-    
     func moveE(_ distance: Int){
         if cx + distance < width {
             var rest = getSubstr(newPark[cy], from: (cx + 1), to: cx + distance)
@@ -75,7 +72,6 @@ func solution(_ park:[String], _ routes:[String]) -> [Int] {
             cy -= distance
         }
     }
-    
     
     routes.forEach {
         var temp = $0.split(separator: " ")

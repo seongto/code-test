@@ -1,29 +1,22 @@
 import Foundation
 
 func solution(_ players:[String], _ callings:[String]) -> [String] {
-    var result: [ String ] = []
-    var dict1: [String:Int] = [:]
-    var dict2: [Int:String] = [:]
+    var result: [ String ] = players
+    var dict: [String:Int] = [:]
     
     for i in 0..<players.count {
-        dict1[players[i]] = i
-        dict2[i] = players[i]
+        dict[players[i]] = i
     }
     
     callings.forEach {
-        var idx: Int = dict1[$0]!
-        var ahead: String = idx > 0 ? dict2[idx - 1]! : ""
+        var idx: Int = dict[$0]!
+        var ahead: String = result[idx - 1]
         
-        dict1[$0] = idx - 1
-        dict1[ahead] = idx
+        result.swapAt(idx, idx - 1)
         
-        dict2[idx] = ahead
-        dict2[idx - 1] = $0
+        dict[$0] = idx - 1
+        dict[ahead] = idx
     }
-    
-    for i in 0..<players.count {
-        result.append(dict2[i]!)
-    }
-    
+
     return result
 }
